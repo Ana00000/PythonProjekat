@@ -1,19 +1,18 @@
-from typing import Tuple
+# import set...
 
 
 class TrieNode(object):
 
     def __init__(self, character: str):
-
         self.character = character
         self.children = []
         self.word_end = False
-        self.counter_dict = {}
-        self.links = {}
+        self.dict = {}
         self.counter = 0
 
-    def is_leaf(self):
+    #  self.set = set...
 
+    def is_leaf(self):
         return len(self.children) == 0
 
 
@@ -38,8 +37,7 @@ class Tree(object):
             return 1 + max(self.height(c) for c in x.children)
 
 
-def add(root, word: str, path, links):
-
+def add(root, word: str, path):
     node = root
 
     for character in word:
@@ -48,40 +46,38 @@ def add(root, word: str, path, links):
 
         for child in node.children:
 
-            if child.char == character:
-
+            if child.character == character:
                 node = child
                 found_from_child = True
                 break
 
         if not found_from_child:
-
             new_node = TrieNode(character)
             node.children.append(new_node)
             node = new_node
 
     node.word_end = True
 
-    if path in node.counter_dict:
+    if path in node.dict:
 
-        node.counter_dict[path] += 1
-        node.links[path] = node.links
+        node.dict[path] += 1
+        #    node.set.add(path)...
         node.counter += 1
 
     else:
 
-        node.counter_dict[path] = 1
-        node.links[path] = links
+        node.dict[path] = 1
+        #  node.set.add(path)...
         node.counter += 1
 
 
-def find(root, prefix: str) -> Tuple[bool, int, dict, dict]:
-
+def find(root, prefix: str):
     node = root
+    set_page = 0
+    # set....
 
     if not root.children:
-
-        return False, 0, {}, {}
+        return set_page, node.dict
 
     for character in prefix:
 
@@ -89,14 +85,12 @@ def find(root, prefix: str) -> Tuple[bool, int, dict, dict]:
 
         for child in node.children:
 
-            if child.char == character:
-
+            if child.character == character:
                 character_found = True
                 node = child
                 break
 
-        if character_found:
+        if not character_found:
+            return set_page, node.dict
 
-            return False, 0, {}, {}
-
-    return True, node.counter, node.counters, node.links
+    return node.set, node.dict

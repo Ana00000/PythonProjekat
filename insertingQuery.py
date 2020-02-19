@@ -1,6 +1,6 @@
 def parse(query):
     cases = ("AND", "OR", "NOT")
-    splitted_query = query.split(" ")
+    splitted_query = query.split(' ')
     first_part = splitted_query[0]
     search = []
     logical_op = ""
@@ -10,6 +10,7 @@ def parse(query):
         if len(splitted_query) == 1:
 
             print("Logicki operatori ne mogu stajati sami!")
+
         else:
 
             print("Logicki operatori AND i OR ne mogu biti na prvom mestu!")
@@ -19,25 +20,8 @@ def parse(query):
     elif first_part == "NOT":
 
         logical_op = "NOT"
-
-        if len(splitted_query) == 1:
-
-            print("Logicki operatori ne mogu stajati sami!")
-            return False, logical_op, search
-
-        elif len(splitted_query) == 3:
-
-            print("Posto se logicki operator NOT nalazi na prvom mestu, nakon njega moze ici samo jos jedna rec!")
-            return False, logical_op, search
-
-        elif splitted_query[1] in cases:
-
-            print("Ne mogu stajati dva logicka operatora jedan za drugim!")
-            return False, logical_op, search
-
-        else:
-
-            search.append(splitted_query[1])
+        print("Logicki operator NOT ne moze biti na prvom mestu")
+        return False, logical_op, search
 
     else:
 
