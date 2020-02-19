@@ -1,7 +1,11 @@
-# import set...
+from typing import Dict, Any
+
+import set
 
 
 class TrieNode(object):
+
+    dict: Dict[Any, Any]
 
     def __init__(self, character: str):
         self.character = character
@@ -9,8 +13,7 @@ class TrieNode(object):
         self.word_end = False
         self.dict = {}
         self.counter = 0
-
-    #  self.set = set...
+        self.set = set.Set()
 
     def is_leaf(self):
         return len(self.children) == 0
@@ -61,20 +64,19 @@ def add(root, word: str, path):
     if path in node.dict:
 
         node.dict[path] += 1
-        #    node.set.add(path)...
+        node.set.add(path)
         node.counter += 1
 
     else:
 
         node.dict[path] = 1
-        #  node.set.add(path)...
+        node.set.add(path)
         node.counter += 1
 
 
 def find(root, prefix: str):
     node = root
-    set_page = 0
-    # set....
+    set_page = set.Set
 
     if not root.children:
         return set_page, node.dict
