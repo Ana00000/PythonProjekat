@@ -1,3 +1,4 @@
+
 def parse(query):
     cases = ("AND", "OR", "NOT")
     splitted_query = query.split(' ')
