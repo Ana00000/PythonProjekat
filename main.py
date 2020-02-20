@@ -1,35 +1,43 @@
-import parsingDocuments
 import insertingQuery
 import searchOfDocuments
+import parsingDocuments
+import trie
+import time
+
 
 if __name__ == '__main__':
 
-    loop = 1
-    i = 0
-    state = 0
-    root = ""
+    loop1 = "1"
+    loop2 = "1"
+    root = trie.TrieNode("*")
 
-    while loop == 1:
+    while loop1 == "1":
 
-        if i == 0:
+        if loop2 == "1":
 
-            state = 1
-            i = -1
+            while True:
 
-        if state == 1:
+                root_dir = input("Unesite korenski direktorijum: \n")
+                beginning = time.time()
+                (success, root) = parsingDocuments.parsing(root_dir)
+                ending = time.time()
+                tik = ending - beginning
 
-            root_dir = input("Unesite korenski direktorijum: \n")
-            (success, root) = parsingDocuments.parsing(root_dir)
+                if success:
 
-            if success:
+                    print("Uspesno su parsirana dokumenta. \n")
+                    print("Vreme za parsiranje je bilo: \n", tik, " \n")
+                    break
 
-                print("Uspesno su parsirana dokumenta. \n")
+                else:
 
-            else:
+                    print("Neuspesno su parsirana dokumenta. \n")
+                    print("Vreme za pokusaj parsiranja je bilo: \n", tik, " \n")
 
-                print("Neuspesno su parsirana dokumenta. \n")
+            loop2 = input("Opcije:\n 1 - Unesite,ponovo,korenski direktorijum: \n"
+                          " 2 - Unesite upit: \n 3 - Izlazak iz programa.\n")
 
-        elif state == 2:
+        elif loop2 == "2":
 
             query = input("Unesite upit: \n")
             (correct, logical_op, search) = insertingQuery.parse(query)
@@ -45,21 +53,23 @@ if __name__ == '__main__':
 
                 else:
 
-                    print("Reci su pronadjene. \n")
+                    print("Reci iz upita su pronadjene. \n")
                     print(konacan_set)
                     print(konacan_recnik)
+                    print("\n")
 
             else:
 
                 print("Neuspesno je unet upit. \n")
 
-        elif state == 3:
+            loop2 = input("Opcije:\n 1 - Unesite,ponovo,korenski direktorijum: \n "
+                          "2 - Unesite upit: \n 3 - Izlazak iz programa.\n")
 
-            loop = -1
-            print("Izlazak iz programa. \n")
+        elif loop2 == "3":
+
+            loop1 = "-1"
+            print("Izlazak iz programa.")
 
         else:
 
-            print("Morate uneti opciju 1,2 ili 3. \n")
-
-        state = input("Opcije:\n 1 - Unesite,ponovo,korenski direktorijum: \n 2 - Unesite upit: \n 3 - Izlazak iz programa.\n")
+            loop2 = input("Morate uneti opciju 1,2 ili 3. \n")

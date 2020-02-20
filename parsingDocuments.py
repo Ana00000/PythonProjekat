@@ -1,10 +1,10 @@
 import os
 import trie
-import parser
+from analyzer import Parser
 
 
 def parsing(root_dir):
-    root = trie.TrieNode('*')
+    root = trie.TrieNode("*")
     found = 0
 
     for subdir, dirs, files in os.walk(root_dir, topdown=True):
@@ -14,7 +14,7 @@ def parsing(root_dir):
             if file.endswith('.html'):
 
                 found = 1
-                par = parser.Parser()
+                par = Parser()
                 par.parse(os.path.join(subdir, file))
 
                 for word in par.words:

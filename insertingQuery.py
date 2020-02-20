@@ -1,9 +1,11 @@
+from typing import List, Any
+
 
 def parse(query):
     cases = ("AND", "OR", "NOT")
     splitted_query = query.split(' ')
     first_part = splitted_query[0]
-    search = []
+    search: List[Any] = []
     logical_op = ""
 
     if first_part == "AND":
@@ -52,9 +54,9 @@ def parse(query):
 
         if len(splitted_query) == 1:
 
+            logical_op = "OR"
             search.append(first_part)
             return True, logical_op, search
-            # logical_op je prazan kad upit ima samo reci
 
         else:
 
@@ -94,6 +96,7 @@ def parse(query):
 
                     else:
 
+                        logical_op = "OR"
                         search.append(word)
 
     return True, logical_op, search
