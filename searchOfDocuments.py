@@ -15,7 +15,7 @@ def find(root, logical_op, search):
             konacan_set, konacan_recnik = trie.find(root, search[0])
             return konacan_set, konacan_recnik
 
-        elif len(search) == 2:
+        else:
 
             set1, recnik1 = trie.find(root, search[0])
             del search[0]
@@ -38,17 +38,14 @@ def find(root, logical_op, search):
         if len(search) == 2:
 
             set1, recnik1 = trie.find(root, search[0])
-            del search[0]
+            set2, recnik2 = trie.find(root, search[1])
+            konacan_set = set1 & set2
 
-            for word in search:
+            for kljuc1 in recnik1:
 
-                set2, recnik2 = trie.find(root, word)
-                konacan_set = set1 & set2
+                if kljuc1 in recnik2:
 
-                for kljuc1 in recnik1:
-
-                    if kljuc1 in recnik2:
-                        recnik1[kljuc1] = recnik2[kljuc1]
+                    recnik1[kljuc1] = recnik2[kljuc1]
 
             return konacan_set, recnik1
 
@@ -66,8 +63,3 @@ def find(root, logical_op, search):
                 del recnik1[kljuc]
 
             return konacan_set, recnik1
-
-    else:
-
-        konacan_set, konacan_recnik = trie.find(root, search)
-        return konacan_set, konacan_recnik
