@@ -76,7 +76,7 @@ def add(root, word: str, path):
 
 def find(root, prefix: str):
     node = root
-    set_page = set.Set
+    set_page = set.Set()
 
     if not root.children:
         return set_page, node.dict
