@@ -6,7 +6,6 @@ def parse(query):
     splitted_query = query.split(' ')
     first_part = splitted_query[0]
     search: List[Any] = []
-    logical_op = ""
 
     if first_part == "AND" or first_part == "and":
 
@@ -86,6 +85,8 @@ def parse(query):
 
             else:
 
+                logical_op = "OR"
+
                 for word in splitted_query:
 
                     if word in cases:
@@ -96,7 +97,6 @@ def parse(query):
 
                     else:
 
-                        logical_op = "OR"
                         search.append(word)
 
     return True, logical_op, search
