@@ -15,7 +15,9 @@ def parsing(root_dir):
 
                 found = 1
                 par = Parser()
-                par.parse(os.path.join(subdir, file))
+                relative_path = os.path.join(subdir, file)
+                file_path = os.path.abspath(relative_path)
+                par.parse(file_path)
 
                 for word in par.words:
                     trie.add(root, word.lower(), os.path.join(subdir, file))

@@ -2,13 +2,13 @@ from typing import List, Any
 
 
 def parse(query):
-    cases = ("AND", "OR", "NOT")
+    cases = ("AND", "OR", "NOT", "and", "or", "not")
     splitted_query = query.split(' ')
     first_part = splitted_query[0]
     search: List[Any] = []
     logical_op = ""
 
-    if first_part == "AND":
+    if first_part == "AND" or first_part == "and":
 
         logical_op = "AND"
 
@@ -22,7 +22,7 @@ def parse(query):
 
         return False, logical_op, search
 
-    elif first_part == "OR":
+    elif first_part == "OR" or first_part == "or":
 
         logical_op = "OR"
 
@@ -36,7 +36,7 @@ def parse(query):
 
         return False, logical_op, search
 
-    elif first_part == "NOT":
+    elif first_part == "NOT" or first_part == "not":
 
         logical_op = "NOT"
 
