@@ -17,8 +17,9 @@ def find(root, logical_op, search):
 
             set1, recnik1 = trie.find(root, search[0])
             set2, recnik2 = trie.find(root, search[1])
-            konacan_set = set1 | set2
-            #   trenutno je privatna fja pa se ne moze pozvati
+
+            konacan_set = set.Set()
+            konacno = konacan_set.unija(set1).unija(set2)
 
             for kljuc2 in recnik2:
 
@@ -26,14 +27,16 @@ def find(root, logical_op, search):
 
                     recnik1[kljuc2] = recnik2[kljuc2]
 
-            return konacan_set, recnik1
+            return konacno, recnik1
 
         elif len(search) == 3:
 
             set1, recnik1 = trie.find(root, search[0])
             set2, recnik2 = trie.find(root, search[1])
             set3, recnik3 = trie.find(root, search[2])
-            konacan_set = set1 | set2 | set3
+
+            konacan_set = set.Set()
+            konacno = konacan_set.unija(set1).unija(set2).unija(set3)
 
             for kljuc2 in recnik2:
 
@@ -48,7 +51,7 @@ def find(root, logical_op, search):
                 if kljuc1 not in recnik3:
                     recnik3[kljuc1] = recnik1[kljuc1]
 
-            return konacan_set, recnik1
+            return konacno, recnik1
 
     elif logical_op == "AND" or logical_op == "and":
 
@@ -56,15 +59,16 @@ def find(root, logical_op, search):
 
             set1, recnik1 = trie.find(root, search[0])
             set2, recnik2 = trie.find(root, search[1])
-            konacan_set = set1 & set2
-            #   trenutno je privatna fja pa se ne moze pozvati
+
+            konacan_set = set.Set()
+            konacno = konacan_set.unija(set1).presek(set2)
 
             for kljuc1 in recnik1:
 
                 if kljuc1 in recnik2:
                     recnik1[kljuc1] = recnik2[kljuc1]
 
-            return konacan_set, recnik1
+            return konacno, recnik1
 
     elif logical_op == "NOT" or logical_op == "not":
 
@@ -72,12 +76,13 @@ def find(root, logical_op, search):
 
             set1, recnik1 = trie.find(root, search[0])
             set2, recnik2 = trie.find(root, search[1])
+
             konacan_set = set.Set()
-            konacan_set.komplement(set2)
+            konacno = konacan_set.unija(set1).komplement(set2)
 
             za_brisanje: List[Any] = [kljuc for kljuc in recnik2 if kljuc in recnik1]
 
             for kljuc in za_brisanje:
                 del recnik1[kljuc]
 
-            return konacan_set, recnik1
+            return konacno, recnik1

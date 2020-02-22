@@ -10,6 +10,8 @@ if __name__ == '__main__':
     loop1 = "1"
     loop2 = "1"
     root = trie.TrieNode("*")
+    logical_op = ""
+    search = []
 
     while loop1 == "1":
 
@@ -39,8 +41,12 @@ if __name__ == '__main__':
 
         elif loop2 == "2":
 
-            query = input("Unesite upit: \n")
-            (correct, logical_op, search) = insertingQuery.parse(query)
+            correct = False
+
+            while not correct:
+
+                query = input("Unesite upit: \n")
+                (correct, logical_op, search) = insertingQuery.parse(query)
 
             if correct:
 

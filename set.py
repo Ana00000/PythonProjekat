@@ -17,7 +17,7 @@ class Set:
     def __copy__(self):
         return Set(self)
 
-    def __or__(self, other):
+    def unija(self, other):
         konacanSet = Set()
         for key in other.stranice:
             konacanSet.add(key)
@@ -36,7 +36,7 @@ class Set:
         #     del self.stranice[key]
         # return self
 
-    def __and__(self, other):
+    def presek(self, other):
         konacanSet = Set()
         for key in self.stranice:
             if key in other.stranice:
