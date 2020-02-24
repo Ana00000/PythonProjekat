@@ -16,7 +16,7 @@ def parsing(root_dir):
         for file in files:
 
             if file.endswith('.html'):
-                print(file)
+               # print(file)
                 found = 1
                 par = Parser()
                 relative_path = os.path.join(subdir, file)
