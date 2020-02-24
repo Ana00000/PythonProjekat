@@ -32,10 +32,22 @@ class Graph:
     def vertices(self):
         return self._out.keys()
 
+    def putanje_in(self, v):
+        self._validate_vertex(v)
+        lista = []
+        for e in self._in[v]:
+            lista.append(e.get_path())
+        return lista
+
     def edge_count(self):
         suma = 0
         for v in self._out:
             suma += len(self._out[v])
+        return suma
+
+    def edge_count_v(self, v):
+        suma = 0
+        suma += len(self._in[v])
         return suma
 
     def edges(self):

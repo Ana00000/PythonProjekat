@@ -45,4 +45,4 @@ def parsing(root_dir):
                     break
 
 
-    return True, root
+    return True, root, graph
