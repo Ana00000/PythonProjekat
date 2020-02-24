@@ -31,7 +31,7 @@ def parsing(root_dir):
 
     if found == 0:
         print("Ne postoji html dokument u korenskom direktorijumu: ", root_dir)
-        return False, root
+        return False, root, graph
 
     # ubacivanje edgova u graph
     verteksi = graph.vertices()

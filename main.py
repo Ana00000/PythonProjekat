@@ -170,10 +170,10 @@ def main_menu():
 
                     #RANGIRANJE STRANICA IZ KONACAN_SET
 
-                    #print('##################################################')
-                    #print(konacan_set)
                     print('##################################################')
-                    #print(konacan_recnik)
+                    print(konacan_set)
+                    print('##################################################')
+                    print(konacan_recnik)
                     #print("\n")
 
                     rangovi_putanje = rangiranje(konacan_set, konacan_recnik)
