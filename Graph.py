@@ -84,6 +84,7 @@ class Graph:
         line = Edge(u, v, x)
         self._out[u][v] = line
         self._in[v][u] = line
+        # print("Edge je insertovan")
 
     def remove_vertex(self, v):
         lista_out = self._out[v].values()

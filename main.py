@@ -60,6 +60,9 @@ if __name__ == '__main__':
                 else:
 
                     print("Reci iz upita su pronadjene. \n")
+
+                    #RANGIRANJE STRANICA IZ KONACAN_SET
+
                     print(konacan_set)
                     print(konacan_recnik)
                     print("\n")
