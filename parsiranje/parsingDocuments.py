@@ -1,7 +1,7 @@
 import os
-import trie
-from Graph import Graph
-from analyzer import Parser
+from strukture import trie
+from strukture.Graph import Graph
+from parsiranje.analyzer import Parser
 graph = None
 
 

@@ -1,7 +1,6 @@
 from typing import List, Any
 
-import trie
-import set
+from strukture import set, trie
 
 
 def find(root, logical_op, search):

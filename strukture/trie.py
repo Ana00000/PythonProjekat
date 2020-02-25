@@ -1,6 +1,6 @@
 from typing import Dict, Any
 
-import set
+from strukture import set
 
 
 class TrieNode(object):

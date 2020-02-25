@@ -1,9 +1,9 @@
-import insertingQuery
-import searchOfDocuments
-import parsingDocuments
-import trie
+from unosUpita import insertingQuery
+from pretragaDokumenata import searchOfDocuments
+from parsiranje import parsingDocuments
+from strukture import trie
 import time
-from Graph import Graph
+from strukture.Graph import Graph
 graph = None
 
 
